@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+// } Driver Code Ends
+
+
+
+class Solution{
+  public:
+    vector<long long> getDigitDiff1AndLessK(long long *a, int n, long long k) {
+        // code here
+        vector<long long >v;
+        for(int i=0;i<n;i++)
+        {
+            string s=to_string(a[i]);
+            int x=s.size(),f=0;
+            for(int j=0;j<x-1;j++)
+            {
+                if(abs(s[j]-s[j+1])==1)f=1;
+                else {f=0; break;}
+            }if(f&&a[i]<k)v.push_back(a[i]);
+        }
+        return v;
+    }
+};
+
+// { Driver Code Starts.
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        long long k;
+        cin >> n >> k;
+        long long arr[n];
+        for (int i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        Solution obj;
+        auto ans = obj.getDigitDiff1AndLessK(arr, n, k);
+        for (auto x: ans) {
+            cout << x << " ";
+        }
+        if (ans.empty()) {
+            cout << -1;
+        }
+        cout << "\n";
+
+    }
+    return 0;
+}
+  // } Driver Code Ends

@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// Function to print the
+// index of an element
+void getIndex(vector<int> v, int K)
+{
+    auto it = find(v.begin(), v.end(), K);
+
+    // If element was found
+    if (it != v.end()) 
+    {
+
+        // calculating the index
+        // of K
+        int index = it - v.begin();
+        cout << index << endl;
+    }
+    else {
+        // If the element is not
+        // present in the vector
+        cout << "-1" << endl;
+    }
+}
+// Driver Code
+int main()
+{
+    // Vector
+  
+    int K,t,n,x;
+    cin>>t;
+    for(int j=0;j<t;j++)
+    {   vector<int> v;
+        cin>>n;
+    for(int i=0;i<n;i++)
+    {
+        cin>>x;
+        v.push_back(x);
+    }
+    cin>>K;
+    getIndex(v, K);
+    }
+  
+    
+    return 0;
+}

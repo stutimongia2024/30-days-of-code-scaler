@@ -1,0 +1,78 @@
+//Initial Template for C++
+
+#include <bits/stdc++.h> 
+using namespace std; 
+
+
+ // } Driver Code Ends
+
+
+//User function Template for C++
+
+class Solution{
+    public:
+    vector<int> Kclosest(vector<int>arr, int n, int x, int k) 
+    { 
+        // Your code goes here
+       vector<int>ans;
+       int a,i,j;
+        sort(arr.begin(), arr.end());
+        a = upper_bound(arr.begin(), arr.end(), x) - arr.begin();
+        for(i=a-1,j=a;(i >= 0 || j < arr.size())&&k;k--)
+        {
+            if(i < 0)
+            {
+                ans.push_back(arr[j]);
+                j++;
+            }
+            else if(j >= arr.size())
+            {
+                ans.push_back(arr[i]);
+                i--;
+            }
+            else if(abs(arr[i]-x)<=abs(arr[j]-x))
+            {
+                ans.push_back(arr[i]);
+                i--;
+            }
+            else
+            {
+                ans.push_back(arr[j]);
+                j++;
+            }
+        }
+        sort(ans.begin(), ans.end());
+        return ans;
+        
+    }  
+};
+
+// { Driver Code Starts.
+
+int main() 
+{ 
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n,x,k;
+		cin>>n>>x>>k; 
+		vector <int> array(n);
+		for (int i = 0; i < n; ++i)
+			cin>>array[i];
+        
+        Solution obj;
+		vector <int> result = obj.Kclosest(array, n, x, k); 
+		for (int i = 0; i < result.size(); ++i)
+		{
+			cout<<result[i]<<" ";
+		}
+		cout<<"\n";
+	}
+
+	return 0; 
+} 
+
+
+
+  // } Driver Code Ends

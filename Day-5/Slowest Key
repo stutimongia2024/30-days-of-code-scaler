@@ -1,0 +1,17 @@
+class Solution {
+public:
+    char slowestKey(vector<int>& arr, string key) {
+        int time = arr[0];
+    char ans = key[0];
+    for(int i=1;i<key.length();i++){
+        int t = arr[i] - arr[i-1];
+        if(t >= time){
+            if(t > time)
+                ans = key[i], time = t;
+            else
+                ans = max(ans, key[i]);
+        }
+    }
+    return ans;
+    }
+};

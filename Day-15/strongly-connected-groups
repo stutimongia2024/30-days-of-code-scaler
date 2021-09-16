@@ -1,0 +1,17 @@
+int minFriends(int m, int n) {
+    int left = 1, right = m;
+    while(left < right) {
+        int mid = left + (right - left) / 2;
+        if(maxEdge(m, mid) < n) left = mid + 1;
+        else right = mid;
+    }
+    return left;
+}
+ 
+int maxEdge(int m, int max_scg) {
+    int num_scg_compo = m / max_scg;
+    int remainer = m % max_scg;
+    int a = max_scg, b = num_scg_compo, c = remainer;
+    int maxE = b*a*(a-1)/2 + b*(b-1)/2*a*(a-1) + c*(c-1)/2 + b*c*(a-1);
+    return maxE;
+} 

@@ -1,0 +1,9 @@
+public static void arrange(List<Long> coins){
+      for(long coin: coins){
+        System.out.println(arragneCoins(coin));
+      }
+    }
+    public static long arrangeCoins(long n) {
+        double x = 0.125 + n;
+        return ((long)(Math.sqrt(x)*Math.sqrt(2) - 0.5));
+    }

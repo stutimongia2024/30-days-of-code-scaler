@@ -1,0 +1,39 @@
+class Solution {
+public:
+    
+    long jobScheduling(vector<long>& s, vector<long>& e, vector<int>& p) {
+        vector<tuple<long,long>>vec;
+        for(int j=0;j<s.size();j++){
+            vec.push_back({e[j],s[j],p[j]});
+        }
+        sort(vec.begin(),vec.end());
+        
+        long dp[vec.size()];
+        memset(dp,0,sizeof(dp));
+        
+        dp[0]=get<2>(vec[0]);
+        long l = vec.size();
+        
+        for(int j=1;j<vec.size();j++){
+            
+            long ans=-1;
+            long l = 0;
+            long r = vec.size()-1;
+            
+            while(l<=r){
+                long mid = (l+r)/2;
+                if(get<0>(vec[mid]) <= get<1>(vec[j])){
+                    ans = max(ans, mid);
+                    l = mid+1; 
+                }
+                else{
+                    r = mid-1;
+                }
+            }
+            
+            dp[j] = max(dp[j-1], ans==-1 ? get<2>(vec[j]) : dp[ans] + get<2>(vec[j]));
+        }
+        
+        return long(dp[vec.size()-1]);
+    }
+};

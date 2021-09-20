@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int trap(vector<int>& height) {
+       long int answer = 0 ;
+        int n = height.size();
+int i = 0 , j = n - 1 ;
+
+int Lmax = height[0]  , Rmax = height[n - 1] ;
+while (i <= j) {
+	Lmax = max(Lmax , height[i]) ;
+	Rmax = max(Rmax , height[j]) ;
+
+	if (Lmax < Rmax) {
+		answer = answer + (Lmax - height[i]) ;
+		i++ ;
+	} else {
+		answer = answer + (Rmax - height[j]) ;
+		j-- ;
+	}
+}
+return answer ;
+    }
+};

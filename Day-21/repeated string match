@@ -1,0 +1,77 @@
+//Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+ // } Driver Code Ends
+
+
+class Solution{
+
+    public:
+    bool issubstring(string str2, string rep1) 
+{ 
+    int M = str2.length(); 
+    int N = rep1.length(); 
+  
+    // Check for substring from starting  
+    // from i'th index of main string 
+    for (int i = 0; i <= N - M; i++) { 
+        int j; 
+  
+        // For current index i,  
+        // check for pattern match 
+        for (j = 0; j < M; j++) 
+            if (rep1[i + j] != str2[j]) 
+                break; 
+  
+        if (j == M) // pattern matched 
+            return true; 
+    } 
+  
+    return false; // not a substring 
+} 
+  
+    int repeatedStringMatch(string A, string B) 
+    {
+        // Your code goes here
+         int ans = 1; 
+      
+    // To store repeated string 
+    string S = A; 
+      
+    // Untill size of S is less than B 
+    while(S.size() < B.size()) 
+    { 
+        S += A; 
+        ans++; 
+    } 
+    if (issubstring(B, S)) return ans; 
+      
+    if (issubstring(B, S+A))  
+        return ans + 1; 
+    return -1; 
+        
+    }
+  
+};
+
+// { Driver Code Starts.
+
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string A,B;
+        cin>>A;
+        cin>>B;
+        Solution obj;
+        cout<<obj.repeatedStringMatch(A,B)<<"\n";
+    }
+    return 0;
+}
+  // } Driver Code Ends

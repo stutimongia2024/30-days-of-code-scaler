@@ -1,0 +1,90 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+/* Link list node */
+struct Node
+{
+    int data;
+    Node* next;
+    
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+    
+};
+
+void push(struct Node** head_ref, int new_data)
+{
+   
+    struct Node* new_node = new Node(new_data);
+    
+    new_node->next = (*head_ref);
+    (*head_ref)    = new_node;
+} 
+
+int countTriplets(struct Node* head, int x) ;
+
+/* Driver program to test count function*/
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int n , x ,i , num;
+        struct Node *head = NULL;
+        cin>>n>>x;
+        for(i=0;i<n;i++)
+        {
+            cin>>num;
+            push(&head,num);
+        }
+ 
+    /* Check the count function */
+    cout <<countTriplets(head, x)<< endl;
+    }
+    return 0;
+}// } Driver Code Ends
+
+
+//User function Template for C++
+
+int countTriplets(struct Node* head, int x) 
+{ 
+    // code here.
+     vector<int> v;
+    struct Node *temp = head;
+    while(temp != NULL)
+    {
+        int d = temp -> data;
+        v.push_back(d);
+        temp = temp -> next;
+    }
+    
+    int ans = 0 , i , j , k;
+    int n = v.size();
+    
+    for (i = 0; i < n - 2; i++) 
+    {
+        j = i + 1;
+        k = n - 1;
+ 
+        while (j < k) 
+        {
+            if (v[i] + v[j] + v[k] == x) 
+            {
+                ans ++;
+                j++;
+                k--;
+            }
+            else if (v[i] + v[j] + v[k] > x)
+                k--;
+ 
+            else
+                j++;
+        }
+    }
+ 
+    return ans;
+} 

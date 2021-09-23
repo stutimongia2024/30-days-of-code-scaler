@@ -1,0 +1,54 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define f1(i,n) for(ll i=1;i<=n;i++)
+#define f0(i,n) for(ll i=0;i<n;i++)
+#define fr(i,n) for(ll i=n-1;i>=0;i--)
+#define fa(i,p,n) for(ll i=p;i<=n;i++)
+#define f(i,a) for(auto &i:a)
+#define vr vector <ll>
+#define pb push_back
+#define sn cout<<"\n";
+#define mp(x,y) make_pair(x,y)
+#define M map<ll,ll>
+#define P pair<ll,ll>
+#define S second
+#define F first
+#define PI 3.14159265
+#define count1(x) __builtin_popcount(x)
+#define G greater<ll>()
+#define all(X) X.begin(),X.end()
+#define allg(X) X.rbegin(),X.rend()
+#define T  int t;cin>>t; while(t--)
+#define sync ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+const ll MX=10000010;
+const ll mod=1e9+7;
+int main()
+{
+   // try :)
+   T{
+      ll n,k,ans=0;cin>>n>>k;
+      vr pre(n);
+      pre[0]=1;
+      f0(i,k)
+      {
+         ll te=0;
+         f0(j,n)
+         {
+            ans+=pre[j];
+            ans%=mod;
+            ll temp=pre[j];
+            pre[j]=te;
+            te=(te+temp)%mod;
+          // cout<<pre[j]<<" ";
+         }
+         reverse(all(pre));
+         // sn
+      }
+      if(k==1)cout<<1;
+      else
+      cout<<ans+1;
+      sn
+   }
+   return 0;
+}
